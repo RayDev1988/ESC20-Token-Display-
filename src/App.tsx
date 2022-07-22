@@ -1,26 +1,35 @@
-import React from "react";
-import logo from "./logo.svg";
+import React, { useEffect, useState } from "react";
 import "./App.css";
+import Header from "./components/header"
+import TokenDetails from "./components/TokenDetails";
+import { fetchTokenBalances } from "./utils";
 import DarkMode from "./DarkMode";
 
 function App() {
+
+  const [balances, setBalances] = useState([]);
+  const [address, setAddress] = useState("");
+
+  const fetchBalances = async (address) => {
+    const data = await fetchTokenBalances(address);
+    setBalances(data);
+  }
+  
+  const changeAddress = (address) => {
+    setAddress(address);
+  }
+
+  const findTokenBlanace = () => {
+    fetchBalances(address);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <DarkMode />
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App container mt-5" style={{width: "100%"}}>
+      <Header
+        setAddress={changeAddress}
+        findBalances={findTokenBlanace}
+      />
+      <TokenDetails details={balances}/>
     </div>
   );
 }

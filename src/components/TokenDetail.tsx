@@ -1,5 +1,10 @@
+import { IBalance } from "../common/types";
 
-const TokenDetail = ({ detail }) => {
+const TokenDetail = ({
+  detail
+}: {
+  detail:IBalance
+}) => {
   return (
     <tr>
       <td>{detail.contractAddress}</td>

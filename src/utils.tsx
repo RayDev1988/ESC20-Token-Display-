@@ -1,9 +1,10 @@
 import axios from "axios"
+import { IBalance } from "./common/types";
 
 const apiKey = 'ke5YtLgRcQeJzCCer3-KOA17LtI6PcyS';
 const baseURL = `https://eth-mainnet.alchemyapi.io/v2/${apiKey}`;
 
-export const fetchTokenBalances = async (address: string) => {
+export const fetchTokenBalances = async (address: string): Promise<IBalance[]> => {
 
   const data = JSON.stringify({
     "jsonrpc": "2.0",
@@ -31,18 +32,18 @@ export const fetchTokenBalances = async (address: string) => {
   const response = await axios(config);
   const balances = response['data']['result'];
   const nonZeroBalances =
-    balances['tokenBalances'].filter(token => {
+    balances['tokenBalances'].filter((token: any) => {
       return token['tokenBalance'] !== '0'
     });
 
-  const rlt = await Promise.all(nonZeroBalances.map(token => fetchTokenTypes(token)));
-  return rlt.filter(token => token['symbol'] === 'USDT' || token['symbol'] === 'DAI' || token['symbol'] === 'LINK' );
+  const rlt: IBalance[] = await Promise.all(nonZeroBalances.map((token: any) => fetchTokenTypes(token)));
+  return rlt.filter((token: any) => token['symbol'] === 'USDT' || token['symbol'] === 'DAI' || token['symbol'] === 'LINK' );
 }
 
-const fetchTokenTypes = async (token) => {
+const fetchTokenTypes = async (token: any): Promise<IBalance[]> => {
   let balance = token['tokenBalance']
   const contractAddress = token['contractAddress'];
-  let individual = {};
+  let individual: any = {};
   individual['contractAddress'] = contractAddress;
 
   let metadataParams = JSON.stringify({

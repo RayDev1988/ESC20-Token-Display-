@@ -1,6 +1,11 @@
+import { IBalance } from "../common/types";
 import TokenDetail from "./TokenDetail";
 
-const TokenDetails = ({ details }) => {
+const TokenDetails = ({
+  details
+}: {
+  details: IBalance[],
+}) => {
   return (
     <table className="data-table table-striped table-bordered table-hover mt-5">
       <thead>
@@ -12,7 +17,7 @@ const TokenDetails = ({ details }) => {
       </thead>
       <tbody>
         {
-          details.map((detail) => <TokenDetail detail={detail} key={detail.contractAddress}/>)
+          details.map((detail, idx) => <TokenDetail detail={detail} key={idx}/>)
         }
       </tbody>
     </table>

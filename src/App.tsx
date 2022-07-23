@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import { IBalance } from "./common/types";
 import Header from "./components/header"
 import TokenDetails from "./components/TokenDetails";
 import { fetchTokenBalances } from "./utils";
 
 function App() {
 
-  const [balances, setBalances] = useState([]);
+  const [balances, setBalances] = useState<IBalance[]>([] as IBalance[]);
   const [address, setAddress] = useState("");
   const [timerId, setTimerId] = useState(-1);
 
@@ -19,7 +20,7 @@ function App() {
     }
   }, []);
 
-  const fetchByTime = (address) => {
+  const fetchByTime = (address: string) => {
     if(timerId !== -1) {
       window.clearInterval(timerId);
     }
@@ -27,12 +28,12 @@ function App() {
     setTimerId(tid);
   }
 
-  const fetchBalances = async (address) => {
-    const data = await fetchTokenBalances(address);
+  const fetchBalances = async (address: string) => {
+    const data: IBalance[] = await fetchTokenBalances(address);
     setBalances(data);
   }
   
-  const changeAddress = (address) => {
+  const changeAddress = (address: string) => {
     setAddress(address);
   }
 

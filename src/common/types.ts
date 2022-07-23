@@ -5,10 +5,9 @@ export interface IBalance {
 }
 
 export interface IModal {
-  findBalances: () => void;
+  findBalances: (address: string) => void;
   setShow: (show: boolean) => void;
   show: boolean;
-  setAddress: (address: string) => void;
 }
 
 export interface IToken {

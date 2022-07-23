@@ -1,11 +1,11 @@
-import React, { FormEvent } from 'react';
+import React, { useState } from 'react';
 import { IModal } from '../common/types';
 import './index.css';
 
-const Modal: React.FC<IModal> = ({ findBalances, setShow, show, setAddress }) => {
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    findBalances();
+const Modal: React.FC<IModal> = ({ findBalances, setShow, show }) => {
+  const [inputText, setInputText] = useState<string>('');
+  const handleSubmit = () => {
+    findBalances(inputText);
     setShow(false);
   };
 
@@ -16,12 +16,16 @@ const Modal: React.FC<IModal> = ({ findBalances, setShow, show, setAddress }) =>
           <div className="modal-header">
             <h4 className="modal-title">Address</h4>
           </div>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={(e) => e.preventDefault()}>
             <div className="modal-body">
-              <input className="address-data" onChange={(e) => setAddress(e.target.value)} />
+              <input
+                className="address-data"
+                value={inputText}
+                onChange={(e) => setInputText(e.target.value)}
+              />
             </div>
             <div className="modal-footer">
-              <button type="submit" className="btn btn-primary">
+              <button className="btn btn-primary" onClick={() => handleSubmit()}>
                 {' '}
                 submit{' '}
               </button>

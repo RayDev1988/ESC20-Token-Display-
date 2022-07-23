@@ -2,13 +2,7 @@ import { useState } from 'react';
 import DarkMode from '../DarkMode';
 import Modal from './modal';
 
-const Header = ({
-  setAddress,
-  findBalances
-}: {
-  setAddress: (address: string) => void;
-  findBalances: () => void;
-}) => {
+const Header = ({ findBalances }: { findBalances: (address: string) => void }) => {
   const [show, setShow] = useState(false);
 
   return (
@@ -17,7 +11,7 @@ const Header = ({
         {' '}
         Add adress{' '}
       </button>
-      <Modal show={show} setShow={setShow} setAddress={setAddress} findBalances={findBalances} />
+      <Modal show={show} setShow={setShow} findBalances={findBalances} />
       <DarkMode />
     </div>
   );

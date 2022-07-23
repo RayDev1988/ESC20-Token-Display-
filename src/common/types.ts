@@ -1,8 +1,7 @@
-
 export interface IBalance {
-  contractAddress: String,
-  balance: Number,
-  symbol: String,
+  contractAddress: string;
+  balance: number;
+  symbol: string;
 }
 
 export interface IModal {
@@ -10,4 +9,10 @@ export interface IModal {
   setShow: (show: boolean) => void;
   show: boolean;
   setAddress: (address: string) => void;
+}
+
+export interface IToken {
+  contractAddress: string;
+  error: string | null;
+  tokenBalance: number;
 }

@@ -1,28 +1,26 @@
-import React, { useState } from "react"
-import DarkMode from "../DarkMode";
-import Modal from "./modal"
+import { useState } from 'react';
+import DarkMode from '../DarkMode';
+import Modal from './modal';
 
 const Header = ({
-  setAddress, findBalances
+  setAddress,
+  findBalances
 }: {
-  setAddress: (address: string) => void,
+  setAddress: (address: string) => void;
   findBalances: () => void;
 }) => {
-
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState(false);
 
   return (
     <div className="d-flex justify-content-between">
-      <button className="btn btn-primary" onClick={() => setShow(true)}>Add adress</button>
-      <Modal
-        show={show}
-        setShow={setShow}
-        setAddress={setAddress}
-        findBalances={findBalances}
-      />
+      <button className="btn btn-primary" onClick={() => setShow(true)}>
+        {' '}
+        Add adress{' '}
+      </button>
+      <Modal show={show} setShow={setShow} setAddress={setAddress} findBalances={findBalances} />
       <DarkMode />
     </div>
-  )
-}
+  );
+};
 
 export default Header;

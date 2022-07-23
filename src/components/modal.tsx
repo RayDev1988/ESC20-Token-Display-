@@ -1,19 +1,13 @@
-import React, { FormEvent } from 'react'
+import React, { FormEvent } from 'react';
 import { IModal } from '../common/types';
-import './index.css'
+import './index.css';
 
-const Modal: React.FC<IModal> = ({
-  findBalances,
-  setShow,
-  show,
-  setAddress,
-}) => {
-
+const Modal: React.FC<IModal> = ({ findBalances, setShow, show, setAddress }) => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     findBalances();
     setShow(false);
-  }
+  };
 
   return (
     <>
@@ -24,20 +18,23 @@ const Modal: React.FC<IModal> = ({
           </div>
           <form onSubmit={handleSubmit}>
             <div className="modal-body">
-              <input
-                className="address-data"
-                onChange={(e) => setAddress(e.target.value)}
-              />
+              <input className="address-data" onChange={(e) => setAddress(e.target.value)} />
             </div>
             <div className="modal-footer">
-              <button type="submit" className="btn btn-primary">submit</button>
-              <button className="btn btn-danger" onClick={(e) => setShow(false)}>close</button>
+              <button type="submit" className="btn btn-primary">
+                {' '}
+                submit{' '}
+              </button>
+              <button className="btn btn-danger" onClick={() => setShow(false)}>
+                {' '}
+                close{' '}
+              </button>
             </div>
           </form>
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
 export default Modal;

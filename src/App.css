@@ -1,3 +1,14 @@
+tr {
+  height: 60px;
+}
+th {
+  text-align: center;
+  color: blue;
+}
+td {
+  text-align: center;
+}
+
 .app-header {
   height: 60px;
 }
@@ -9,7 +20,6 @@
 .data-table {
   --bs-table-bg: transparent;
     --bs-table-accent-bg: transparent;
-    --bs-table-striped-color: #212529;
     --bs-table-striped-bg: rgba(0, 0, 0, 0.05);
     --bs-table-active-color: #212529;
     --bs-table-active-bg: rgba(0, 0, 0, 0.1);
@@ -24,4 +34,5 @@
     display: table;
     text-indent: initial;
     border-spacing: 2px;
+    font-size: 20px;
 }

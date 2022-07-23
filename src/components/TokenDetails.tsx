@@ -5,9 +5,9 @@ const TokenDetails = ({ details }) => {
     <table className="data-table table-striped table-bordered table-hover mt-5">
       <thead>
         <tr>
-          <td> Contract Address </td>
-          <td> Balance </td>
-          <td> Token Type </td>
+          <th> Contract Address </th>
+          <th> Balance </th>
+          <th> Token Type </th>
         </tr>
       </thead>
       <tbody>

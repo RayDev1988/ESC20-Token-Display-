@@ -10,6 +10,14 @@ function App() {
   const [balances, setBalances] = useState([]);
   const [address, setAddress] = useState("");
 
+  useEffect(() => {
+    const storageItem = localStorage.getItem("address");
+    if(storageItem) {
+      setAddress(storageItem);
+      fetchBalances(storageItem);
+    }
+  }, []);
+
   const fetchBalances = async (address) => {
     const data = await fetchTokenBalances(address);
     setBalances(data);
@@ -20,6 +28,7 @@ function App() {
   }
 
   const findTokenBlanace = () => {
+    localStorage.setItem("address", address);
     fetchBalances(address);
   }
 
